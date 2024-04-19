@@ -135,7 +135,156 @@ numbers_df.iloc[2:6, 1:3]
 
 ### Treating missing values
 ```python
+# Yo, we're gearing up for some serious data hustlin':
 
+# First up, we're summoning the almighty numpy library, ready to crunch numbers like a boss.
+# It's like having a math wizard by our side, ready to drop some serious calculations.
+
+# Get ready to crunch numbers like a boss!
+import numpy as np  
+
+# Next in line, we're bringing in the pandas library to the mix.
+# This powerhouse is the backbone of our data adventures, letting us tame and wrangle our datasets with ease.
+# It's like having a data guru on standby, guiding us through the data jungle.
+
+# Get ready to dive deep into the world of data with pandas!
+import pandas as pd  
+
+# And last but not least, we're cherry-picking the DataFrame class from the pandas library.
+# It's like snagging the VIP pass to the data party, granting us access to all the exclusive features and functionalities.
+# We're ready to craft some epic DataFrames!
+
+# Get ready to create some epic DataFrames!
+from pandas import DataFrame  
+
+### Filling missing values using fillna(), replace() and interpolate()
+# Aight, let's cook up some fresh data, fam:
+
+# We're crafting a dictionary called 'data' containing the dope details of our crew.
+# Each key represents a feature: 'names', 'age', 'gender', and 'rank'.
+# It's like putting together a crew roster for our data squad, complete with their stats.
+
+data = {'names': ['Steve', 'John', 'Richard', 'Sarah', 'Randy', 'Michael', 'Julie'],
+        'age': [20, 22, 20, 21, 24, 23, 22],
+        'gender': ['Male', 'Male', 'Male', 'Female', 'Male', 'Male', 'Female'],
+        'rank': [2, 1, 4, 5, 3, 7, 6]}
+
+# Now, let's assemble this crew into a DataFrame called 'ranking_df'.
+# It's like putting together our dream team lineup, ready to conquer the data world!
+
+ranking_df = DataFrame(data)
+
+# Let's peep the 'ranking_df' to see our crew in action.
+# Get ready to meet the squad and see who's bringin' the heat!
+
+ranking_df
+
+# Yo, we're about to shake things up with some missing values:
+
+# We're using .iloc to target rows 2 to 4 (inclusive) and column 1, and setting those values to NaN.
+# It's like creating a little mystery in our data, leaving those spots empty for now.
+
+ranking_df.iloc[2:5, 1] = np.nan
+
+# Now, we're targeting rows 3 to 5 (inclusive) and column 3, and dropping some NaN bombs in there.
+# It's like adding another layer of intrigue, making our data even more mysterious.
+
+ranking_df.iloc[3:6, 3] = np.nan
+
+# Oh snap! We're taking it up a notch and dropping an entire row of NaN values.
+# It's like saying, "Peace out, row 4! You're on vacation now."
+
+ranking_df.iloc[3, :] = np.nan
+
+# Now, let's peep the updated 'ranking_df' to see the effects of our data shenanigans.
+# Get ready for some missing values, adding a bit of spice to our crew lineup!
+
+ranking_df
+
+# Yo, check it! We're about to uncover some hidden gems:
+
+# We're using the .isnull() method to detect missing values (NaN) in the 'ranking_df'.
+# It's like shining a spotlight on our data, exposing those empty spots we left behind.
+
+ranking_df.isnull()
+
+# Yo, fam! We're flipping the script and checking out the real deal:
+
+# We're unleashing the .notnull() method on the 'ranking_df' to spot all the places where we ain't got no missing values.
+# It's like shining a spotlight on the data and highlighting all the spots that are filled with real, solid information.
+
+ranking_df.notnull()
+
+# Yo, check it! We're about to uncover some hidden gems:
+
+# We're using the pd.isnull() function to create a boolean series called 'bool_series'.
+# This series will have True where the 'age' column in 'ranking_df' has missing values (NaN), and False otherwise.
+# It's like shining a flashlight on the 'age' column and flagging all the spots where we're missing data.
+
+bool_series = pd.isnull(ranking_df['age'])
+
+# Now, we're filtering 'ranking_df' using 'bool_series' to display only the rows where the 'age' column has missing values.
+# It's like zooming in on the specific rows where we're missing some key info about our crew.
+
+ranking_df[bool_series]
+
+# Ayo, we're about to patch up those missing spots like a pro:
+
+# We're using the .fillna() method to replace all missing values (NaN) in 'ranking_df' with 0.
+# It's like fixing up our crew lineup, filling in the blanks with some placeholder values.
+
+ranking_df.fillna(0)
+
+# Ayo, we're about to patch up those missing spots like a pro:
+
+# We're using the .fillna() method with the 'pad' method parameter to replace missing values (NaN) in 'ranking_df'.
+# With 'pad', also known as 'ffill' (forward fill), we're filling in missing values with the last observed non-null value in the column.
+# It's like sliding down the block and filling in the gaps with the last known info.
+
+ranking_df.fillna(method='pad')
+
+# We're bout to patch up those missing spots like a pro:
+
+# We're using the .fillna() method with the 'bfill' method parameter to replace missing values (NaN) in 'ranking_df'.
+# With 'bfill', also known as 'backfill' (backward fill), we're filling in missing values with the next observed non-null value in the column.
+# It's like cruising through the block and filling in the gaps with the next piece of info.
+
+ranking_df.fillna(method='bfill')
+
+# Now it's time to level up and interpolate like a pro:
+
+# We're using the .interpolate() method with the 'linear' method parameter to replace missing values (NaN) in 'ranking_df'.
+# With 'linear' interpolation, we're filling in missing values by linearly interpolating between existing values in the column.
+# It's like smoothly connecting the dots, filling in the blanks with a straight line.
+
+ranking_df.interpolate(method='linear')
+
+# Ayo, we're about to clean house and drop some rows like a boss:
+
+# We're using the .dropna() method to drop rows from 'ranking_df' where any value is missing (NaN).
+# It's like sweeping through the data and removing any rows that have missing or incomplete information.
+# We're keeping it tight and only rolling with the complete data.
+
+ranking_df.dropna()
+
+# Ayo, we're about to clean house and drop some rows like a boss:
+
+# We're using the .dropna() method with the 'how' parameter set to 'all'.
+# This means we're only dropping rows from 'ranking_df' where all values are missing (NaN).
+# It's like doing a thorough check and only removing rows that are completely empty.
+# We're keeping it real and only getting rid of the rows that offer no valuable info.
+
+ranking_df.dropna(how='all')
+
+ranking_df.dropna(axis=1)
+# Ayo, we're about to clean house and drop some rows like a boss:
+
+# We're using the .dropna() method with the 'axis' parameter set to 0 (which is the default).
+# This means we're dropping rows from 'ranking_df' where any value is missing (NaN).
+# It's like doing a quick scan and getting rid of any rows that have missing or incomplete information.
+# We're keeping it tight and only rolling with the complete data.
+
+ranking_df.dropna(axis=0)
 ```
 
 ### Removing duplicates
