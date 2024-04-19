@@ -131,7 +131,6 @@ numbers_df
 # It's like carvin' out a fresh slice of data pie, grabbin' only the juiciest bits from rows 3 to 6 and columns 2 to 3.
 
 numbers_df.iloc[2:6, 1:3]
-
 ```
 
 ### Treating missing values
