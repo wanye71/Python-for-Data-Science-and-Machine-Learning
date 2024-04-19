@@ -289,7 +289,75 @@ ranking_df.dropna(axis=0)
 
 ### Removing duplicates
 ```python
+# Alright, fam, we're gearing up for some serious data expedition:
 
+# First up, we're strapping on our climbing gear and summoning the almighty numpy library. 
+# Just like belaying a partner up the rock face, numpy is our trusty rope, ready to support us through the toughest data climbs.
+
+import numpy as np
+
+# Next in line, we're setting our sights on the pandas library, our sturdy harness in this data adventure.
+# Like navigating a challenging climbing route, pandas helps us maneuver through complex datasets with ease, ensuring we reach the summit of data excellence.
+
+import pandas as pd
+
+# And last but not least, we're reaching out for the Series and DataFrame classes from the pandas library, our essential tools in this data ascent.
+# Just like selecting the perfect climbing shoes, these classes equip us with the precision and versatility needed to conquer any data challenge that comes our way.
+
+from pandas import Series, DataFrame
+
+# Alright, fam, we're about to tackle a new data climb:
+
+# We're crafting a DataFrame called 'DF_obj' that represents a series of climbing routes.
+# Each column represents a different aspect of the climb: 'difficulty' is the rating of the climb, 'route' is the type of climb, and 'name' is the name of the route.
+# It's like mapping out a climbing guidebook, detailing each route's difficulty, type, and name.
+
+DF_obj = DataFrame({'difficulty': [1, 1, 2, 2, 3, 3, 3],
+                    'route': ['a', 'a', 'b', 'b', 'c', 'c', 'c'],
+                    'name': ['A', 'A', 'B', 'B', 'C', 'C', 'C']})
+
+# Now that we've crafted our climbing guidebook, let's check it out and see the routes we've mapped.
+# Get ready to plan your next climbing adventure!
+
+DF_obj
+
+# Ayo, fam! We're about to do some route checking:
+
+# We're using the .duplicated() method on 'DF_obj' to identify duplicate climbing routes.
+# This method returns a boolean Series indicating whether each row is a duplicate (True) or not (False).
+# It's like scanning our climbing guidebook and flagging any routes that appear more than once.
+
+DF_obj.duplicated()
+# Ayo, fam! We're about to clean up some route duplicates:
+
+# We're using the .drop_duplicates() method on 'DF_obj' to remove duplicate climbing routes.
+# This method returns a DataFrame with duplicate rows removed.
+# It's like flipping through our climbing guidebook and ripping out any duplicate routes, ensuring each route is unique.
+
+DF_obj.drop_duplicates()
+
+# Ayo, fam! We're back with a new set of climbing routes:
+
+# We're crafting a DataFrame called 'DF_obj' that represents a series of climbing routes.
+# Each column represents a different aspect of the climb: 'difficulty' is the rating of the climb, 'route' is the type of climb, and 'name' is the name of the route.
+# It's like updating our climbing guidebook with some fresh routes to explore.
+
+DF_obj = DataFrame({'difficulty': [1, 1, 2, 2, 3, 3, 3],
+                    'route': ['a', 'a', 'b', 'b', 'c', 'c', 'c'],
+                    'name': ['A', 'A', 'B', 'B', 'C', 'D', 'C']})
+
+# Now that we've crafted our updated climbing guidebook, let's check it out and see the routes we've mapped.
+# Get ready to plan your next climbing adventure!
+
+DF_obj
+
+# Ayo, fam! We're about to clean up some route duplicates:
+
+# We're using the .drop_duplicates() method on 'DF_obj' to remove duplicate climbing routes based on the 'name' column.
+# This method returns a DataFrame with duplicate rows removed, considering only the 'name' column for comparison.
+# It's like flipping through our climbing guidebook and ripping out any duplicate routes, ensuring each route name is unique.
+
+DF_obj.drop_duplicates(['name'])
 ```
 
 ### Concatenating and transforming
