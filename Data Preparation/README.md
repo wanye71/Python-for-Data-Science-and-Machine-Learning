@@ -362,7 +362,138 @@ DF_obj.drop_duplicates(['name'])
 
 ### Concatenating and transforming
 ```python
+# Ayo, fam! We're gearing up for some serious data exploration, like navigating the vast expanse of our solar system:
 
+# First up, we're summoning the almighty numpy library, ready to crunch numbers like a boss.
+# Just like the gravitational pull of planets, numpy equips us with powerful tools for numerical computations.
+
+import numpy as np
+
+# Next in line, we're setting our sights on the pandas library, our trusty sidekick in this data adventure.
+# Like orbiting planets around a star, pandas helps us manipulate and analyze datasets with ease, providing structure and organization to our data universe.
+
+import pandas as pd
+
+# And last but not least, we're cherry-picking the Series and DataFrame classes from the pandas library.
+# These classes are like our essential satellites orbiting around a planet, allowing us to organize and structure our data for exploration and analysis.
+
+from pandas import Series, DataFrame
+
+### Concatenating data
+# Ayo, fam! We're about to embark on a cosmic journey through the data universe:
+
+# We're creating a DataFrame called 'DF_obj' that represents a matrix of data, akin to the celestial bodies in our solar system.
+# Each element in the matrix is like a planet orbiting around the sun, with its own unique position and characteristics.
+
+DF_obj = DataFrame(np.arange(36).reshape(6, 6))
+
+# Now that we've laid out our cosmic matrix, let's take a closer look at the celestial bodies we've mapped.
+# Get ready to explore the wonders of our data universe!
+
+DF_obj
+
+# Ayo, fam! We're back with another cosmic dataset:
+
+# We're creating a DataFrame called 'DF_obj_2' that represents a matrix of data, similar to the celestial bodies in our solar system.
+# Each element in the matrix is like a planet orbiting around the sun, with its own unique position and characteristics.
+
+DF_obj_2 = DataFrame(np.arange(15).reshape(5, 3))
+
+# Now that we've charted out our new cosmic matrix, let's take a closer look at the celestial bodies we've mapped.
+# Get ready to explore the wonders of our data universe once again!
+
+DF_obj_2
+
+# Ayo, fam! We're about to merge two cosmic datasets into one epic cosmic exploration:
+
+# We're using the pd.concat() function to concatenate (merge) two DataFrames, 'DF_obj' and 'DF_obj_2', along the columns (axis=1).
+# It's like combining two star systems into one, merging their celestial bodies to explore a larger cosmic space.
+
+pd.concat([DF_obj, DF_obj_2], axis=1)
+
+# Ayo, fam! We're about to merge two cosmic datasets into one epic cosmic exploration:
+
+# We're using the pd.concat() function to concatenate (merge) two DataFrames, 'DF_obj' and 'DF_obj_2', along the rows (axis=0).
+# It's like combining two star systems into one, merging their celestial bodies to explore a larger cosmic space.
+
+pd.concat([DF_obj, DF_obj_2], axis=0)
+
+### Transforming data
+#### Dropping data
+# Ayo, fam! We're about to navigate through our cosmic dataset and drop some celestial bodies:
+
+# We're using the .drop() method on 'DF_obj' to remove rows (celestial bodies) with indices 0 and 2 along the rows (axis=0).
+# It's like navigating through our star map and eliminating specific planets to focus on a select group.
+
+DF_obj.drop([0, 2], axis=0)
+
+# Ayo, fam! We're about to navigate through our cosmic dataset and drop some celestial bodies:
+
+# We're using the .drop() method on 'DF_obj' to remove columns (celestial bodies) with indices 0 and 2 along the columns (axis=1).
+# It's like navigating through our star map and eliminating specific planets to focus on a select group.
+
+DF_obj.drop([0, 2], axis=1)
+
+#### Adding data
+# Ayo, fam! We're about to add a new celestial body to our cosmic dataset:
+
+# We're creating a Series called 'series_obj' that represents a new variable in our cosmic exploration.
+# Each element in the Series is like a new celestial body orbiting around our cosmic dataset.
+# We're giving this variable the name "added_variable" to distinguish it from other variables.
+
+series_obj = Series(np.arange(6))
+series_obj.name = "added_variable"
+
+# Get ready to welcome our new celestial body to the cosmic data universe!
+
+series_obj
+
+# Ayo, fam! We're about to merge our cosmic dataset with a new celestial body:
+
+# We're using the .join() method to merge the DataFrame 'DF_obj' with the Series 'series_obj', adding a new variable to our cosmic exploration.
+# It's like combining two star systems, merging their celestial bodies to explore a larger cosmic space with new variables.
+
+variable_added = DataFrame.join(DF_obj, series_obj)
+
+# Get ready to explore the cosmic dataset with our new celestial body added!
+
+variable_added
+
+# Ayo, fam! We're about to double up our cosmic dataset for some epic cosmic exploration:
+
+# We're using the pd.concat() function to concatenate (merge) the DataFrame 'variable_added' with itself, creating a new DataFrame 'added_datatable'.
+# By setting ignore_index=False, we preserve the original index of the DataFrame.
+# It's like duplicating our star map, creating a cosmic dataset with twice as many celestial bodies for exploration.
+
+added_datatable = pd.concat([variable_added, variable_added], ignore_index=False)
+
+# Get ready to dive deep into our expanded cosmic dataset and explore the wonders of the universe!
+
+added_datatable
+
+# Ayo, fam! We're about to double up our cosmic dataset for some epic cosmic exploration:
+
+# We're using the pd.concat() function to concatenate (merge) the DataFrame 'variable_added' with itself, creating a new DataFrame 'added_datatable'.
+# By setting ignore_index=True, we reset the index of the concatenated DataFrame, creating a continuous index from 0 to the total number of rows.
+# It's like duplicating our star map, creating a cosmic dataset with twice as many celestial bodies for exploration, and renumbering the rows for clarity.
+
+added_datatable = pd.concat([variable_added, variable_added], ignore_index=True)
+
+# Get ready to dive deep into our expanded cosmic dataset and explore the wonders of the universe!
+
+added_datatable
+
+#### Sorting data
+# Ayo, fam! We're about to sort our cosmic dataset based on a specific celestial body:
+
+# We're using the .sort_values() method on 'DF_obj' to sort the DataFrame based on the values in the 5th column (celestial body), in descending order.
+# It's like arranging our star map based on the characteristics of a specific celestial body, with the most massive ones at the top.
+
+DF_sorted = DF_obj.sort_values(by=5, ascending=False)
+
+# Get ready to explore our sorted cosmic dataset and discover the celestial bodies with the highest values!
+
+DF_sorted
 ```
 
 ### Grouping and aggregation
