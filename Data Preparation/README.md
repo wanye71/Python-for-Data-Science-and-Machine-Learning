@@ -498,5 +498,46 @@ DF_sorted
 
 ### Grouping and aggregation
 ```python
+# Ayo, fam! We're importing the almighty NumPy library, ready to crunch numbers like a boss.
+import numpy as np
 
+# Next up, we're summoning the powerful Pandas library, our trusty sidekick in this data adventure.
+import pandas as pd
+
+# And last but not least, we're cherry-picking the Series and DataFrame classes from the Pandas library.
+# These classes are like our essential tools for organizing and structuring our data for exploration and analysis.
+from pandas import Series, DataFrame
+```
+
+```python
+# Ayo, fam! We're about to load some data into our cosmic data universe:
+
+# We're setting the file path of our dataset to 'address'.
+# It's like pinpointing the coordinates of a distant galaxy in the vast cosmic expanse.
+address = '/workspaces/Python-for-Data-Science-and-Machine-Learning/mtcars.csv'
+
+# Next, we're using the pd.read_csv() function to read the dataset located at the specified address.
+# This function loads the dataset into a DataFrame called 'cars', ready for exploration and analysis.
+# It's like capturing a cosmic image of a distant galaxy and bringing it back to our data observatory for study.
+cars = pd.read_csv(address)
+
+# Now that we've loaded our cosmic dataset, let's give the columns more meaningful names for easier analysis.
+# We're renaming the columns to provide clearer descriptions of the data they represent.
+cars.columns = ['car_name', 'mpg', 'cyl', 'disp', 'hp', 'drat', 'wt', 'qsec', 'vs', 'am', 'gear', 'carb']
+
+# Get ready to explore the first few rows of our cosmic dataset and uncover the mysteries within!
+cars.head()
+```
+
+```python
+# Ayo, fam! We're about to group our cosmic dataset based on the number of cylinders in each car:
+
+# We're using the .groupby() method on the 'cars' DataFrame to group the data based on the 'cyl' column.
+# This groups the cars into clusters based on the number of cylinders they have, creating cosmic car clusters!
+cars_groups = cars.groupby(cars['cyl'])
+
+# Now that we've grouped our cosmic cars, let's calculate the mean values for each numeric column within each group.
+# We're using the .mean() method on the grouped DataFrame, specifying numeric_only=True to include only numeric columns in the calculation.
+# It's like calculating the average properties of each cosmic car cluster, providing insights into their characteristics.
+cars_groups.mean(numeric_only=True)
 ```
