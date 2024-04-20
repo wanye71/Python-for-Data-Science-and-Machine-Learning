@@ -498,7 +498,8 @@ DF_sorted
 
 ### Grouping and aggregation
 ```python
-# Ayo, fam! We're importing the almighty NumPy library, ready to crunch numbers like a boss.
+# Ayo, fam! We
+# 're importing the almighty NumPy library, ready to crunch numbers like a boss.
 import numpy as np
 
 # Next up, we're summoning the powerful Pandas library, our trusty sidekick in this data adventure.
