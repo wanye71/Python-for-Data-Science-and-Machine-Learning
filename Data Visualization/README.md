@@ -487,6 +487,180 @@ ax2.plot(x,y)
 
 ### Plot Formatting
 ```python
+# Ayo, we're about to kick it off with some data exploration using seaborn. Think of seaborn as the slick, electric ride that's gonna take us on a data adventure like no other.
+import seaborn as sb
+# Next up, we're bringing in numpy, the powerhouse under the hood of our data vehicle. It's like the electric motor that gives us the horsepower to crunch numbers lightning fast.
+import numpy as np
+# Pandas is joining the party, and it's our go-to for handling tabular data. Picture it as the supercharged battery pack that keeps our data vehicle juiced up and ready to roll.
+import pandas as pd
+# Time to bring in matplotlib.pyplot, the graphic interface of our data vehicle. It's like the flashy dashboard that displays our data insights with style and flair.
+import matplotlib.pyplot as plt
+
+# We're also importing Series and DataFrame from pandas, essential tools in our data exploration toolkit. Series is like the sleek headlights that illuminate individual data points, while DataFrame is the spacious cabin where all our data can chill together.
+from pandas import Series, DataFrame
+# Lastly, rcParams from pylab is coming in to customize the look and feel of our data visualizations. It's like adding custom rims and paint jobs to our data vehicle, making sure it stands out on the data highway.
+from pylab import rcParams
+
+# First up, we're enabling inline plotting with `%matplotlib inline`. This 
+# magic command ensures that any plots we create will be displayed directly 
+# within our Jupyter Notebook or other IPython environment.
+%matplotlib inline
+
+# Next, we're setting the default figure size for our plots using 
+# `rcParams['figure.figsize'] = 5, 4`. This line adjusts the width and height 
+# of our plots to be 5 inches by 4 inches, ensuring they're the perfect size 
+# for viewing and sharing.
+rcParams['figure.figsize'] = 5, 4
+
+# Now, we're setting the style of our plots to 'whitegrid' with 
+# `sb.set_style('whitegrid')`. This style creates a clean and minimalist 
+# background with horizontal gridlines, making our plots easy to read and 
+# understand.
+sb.set_style('whitegrid')
+
+### Defining plot color
+# We're defining the x values using the range function, starting from 1 and 
+# ending at 9 (exclusive). This creates a sequence of integers from 1 to 9.
+x = range(1, 10)
+
+# Next, we're defining the y values as a list containing numeric values. This 
+# list represents the heights of the bars in our bar plot.
+y = [1, 2, 3, 4, 0.5, 4, 3, 2, 1]
+
+# Now, we're creating a bar plot using the `plt.bar()` function from 
+# matplotlib.pyplot. This function takes the x and y values as input and 
+# generates a bar plot with x on the horizontal axis and y on the vertical 
+# axis.
+plt.bar(x, y)
+
+# We're defining a list called 'wide' containing the widths of each bar in the 
+# bar plot. These widths will determine the size of each bar on the x-axis.
+wide = [0.5, 0.5, 0.5, 0.9, 0.9, 0.9, 0.5, 0.5, 0.5]
+
+# We're also defining a list called 'color' containing a single color string 
+# 'salmon'. This will set the color of all bars in the bar plot to salmon.
+color = ['salmon']
+
+# Now, we're creating a bar plot using the `plt.bar()` function from 
+# matplotlib.pyplot. In addition to the x and y values, we're specifying 
+# 'width=wide' to set the widths of the bars, 'color=color' to set the color 
+# of the bars to salmon, and 'align='center'' to align the bars with the 
+# center of each x-coordinate.
+plt.bar(x, y, width=wide, color=color, align='center')
+
+# We're defining a variable called 'address' and assigning it the file path of 
+# the CSV file containing the data. This path points to the location of the 
+# file on the file system.
+address = '/workspaces/Python-for-Data-Science-and-Machine-Learning/mtcars.csv'
+
+# We're using the `pd.read_csv()` function from the pandas library to read the 
+# data from the CSV file located at the specified address. The data is stored 
+# in a DataFrame called 'cars'.
+cars = pd.read_csv(address)
+
+# We're renaming the columns of the 'cars' DataFrame using the `columns` 
+# attribute. The new column names are specified as a list containing strings.
+# These names are assigned to the columns in the order they appear in the list.
+cars.columns = ['car_names', 'mpg', 'cyl', 'disp', 'hp', 'drat', 'wt', 'qsec', 
+                'vs', 'am', 'gear', 'carb']
+
+# We're selecting the 'mpg' column from the 'cars' DataFrame using bracket 
+# indexing. This creates a Series object containing the miles per gallon (mpg) 
+# values for each car in the dataset.
+mpg = cars['mpg']
+
+# We're using the `plot()` method on the 'mpg' Series to create a line plot of 
+# the mpg values. The x-axis will automatically use the index of the Series, 
+# while the y-axis will represent the mpg values.
+mpg.plot()
+
+# We're selecting a subset of columns from the 'cars' DataFrame using double 
+# square brackets '[[]]'. This syntax allows us to select multiple columns 
+# simultaneously. The selected columns are 'cyl', 'mpg', and 'wt'.
+df = cars[['cyl', 'mpg', 'wt']]
+
+# We're using the `plot()` method on the DataFrame 'df' to create a line plot. 
+# By default, the index of the DataFrame will be used for the x-axis, and each 
+# column will be plotted as a separate line on the y-axis.
+df.plot()
+
+# We're defining a list called 'color_theme' containing three color strings: 
+# 'teal', 'peachpuff', and 'powderblue'. These colors will be used to customize 
+# the line colors in the plot.
+color_theme = ['teal', 'peachpuff', 'powderblue']
+
+# We're using the `plot()` method on the DataFrame 'df' to create a line plot. 
+# Additionally, we're specifying the 'color' parameter and passing the 
+# 'color_theme' list. This parameter assigns the specified colors to the lines 
+# in the plot, in the order they appear in the list.
+df.plot(color=color_theme)
+# We're defining a list called 'z' containing numeric values. This list 
+# represents the data that will be visualized in the pie chart.
+z = [1, 1, 0.1, 2, 0.5]
+
+# We're using the `plt.pie()` function from matplotlib.pyplot to create a pie 
+# chart. The 'z' list is passed as the first argument, providing the data to be 
+# visualized. Additionally, we're specifying the 'explode' parameter with a list 
+# [0, 0.1, 0, 0.1, 0]. This parameter controls the "explode" effect, where 
+# slices are separated from the rest of the pie. A value of 0 means no 
+# separation, while a non-zero value creates a separation.
+plt.pie(z, explode=[0, 0.1, 0, 0.1, 0])
+
+# We're displaying the pie chart using the `plt.show()` function.
+plt.show()
+
+# We're defining a list called 'color_theme' containing hexadecimal color 
+# values. These colors will be used to customize the colors of the slices in 
+# the pie chart.
+color_theme = ["#E0BBE4", "#957DAD", "#D291BC", "#FEC8D8", "#FFDFD3"]
+
+# We're using the `plt.pie()` function from matplotlib.pyplot to create a pie 
+# chart. The 'z' list is passed as the first argument, providing the data to be 
+# visualized. Additionally, we're specifying the 'colors' parameter and passing 
+# the 'color_theme' list. This parameter assigns the specified colors to the 
+# slices in the pie chart, in the order they appear in the list.
+plt.pie(z, colors=color_theme)
+
+# We're displaying the pie chart using the `plt.show()` function.
+plt.show()
+
+### Customize Line Styles
+# We're defining a range of values from 1 to 10 (excluding 10) and assigning it 
+# to the variable 'x1'. This range will be used as the x-values for the second 
+# line plot.
+x1 = range(1, 10)
+
+# We're defining a list 'y1' containing numeric values representing the 
+# y-coordinates for the second line plot.
+y1 = [9, 8, 7, 6, 5, 4, 3, 2, 1]
+
+# We're using the `plt.plot()` function from matplotlib.pyplot to create the 
+# first line plot. The 'x' and 'y' lists are passed as arguments, providing 
+# the x and y coordinates of the points to be connected by lines.
+plt.plot(x, y)
+
+# We're using the `plt.plot()` function again to create the second line plot. 
+# This time, the 'x1' and 'y1' lists are passed as arguments to specify the 
+# coordinates of the points for the second line plot.
+plt.plot(x1, y1)
+
+# We're using the `plt.plot()` function from matplotlib.pyplot to create the 
+# first line plot. The 'x' and 'y' lists are passed as arguments, providing 
+# the x and y coordinates of the points to be connected by lines. Additionally, 
+# we're specifying the 'ls' parameter with the value 'solid' to set the line 
+# style to solid and the 'lw' parameter with the value 5 to set the line width 
+# to 5.
+plt.plot(x, y, ls='solid', lw=5)
+
+# We're using the `plt.plot()` function again to create the second line plot. 
+# This time, the 'x1' and 'y1' lists are passed as arguments to specify the 
+# coordinates of the points for the second line plot. Additionally, we're 
+# specifying the 'ls' parameter with the value '--' to set the line style to 
+# dashed and the 'lw' parameter with the value 10 to set the line width to 10.
+plt.plot(x1, y1, ls='--', lw=10)
+
+plt.plot(x,y, marker='1', mew=20)
+plt.plot(x1,y1, marker='+', mew=15)
 
 ```
 
