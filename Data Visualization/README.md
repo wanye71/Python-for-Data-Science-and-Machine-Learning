@@ -666,8 +666,6 @@ plt.plot(x1,y1, marker='+', mew=15)
 
 ### Creating Labels and Annotations
 ```python
-# Ah, just like finding the perfect partner, we're embarking on a journey 
-# of exploration and discovery with Python and its libraries.
 
 # We're importing the NumPy library and aliasing it as 'np'. NumPy is like 
 # the reliable friend who always has your back, providing support for arrays, 
@@ -712,6 +710,8 @@ import seaborn as sns
 # to shine.
 rcParams['figure.figsize'] = 15, 4
 
+
+
 # We're setting the style of the plots using `sns.set_style()`. By choosing the 
 # 'darkgrid' style, we're adding a touch of mystery and allure to our visual 
 # storytelling. It's like setting the mood with dim lighting and a hint of 
@@ -755,77 +755,256 @@ plt.xlabel('The x-axis label')
 # of each data point in our romantic narrative.
 plt.ylabel('The y-axis label')
 
+
 z = [1,2,3,4,0.5]
 veh_type = ['bicycle', 'motorbike', 'car', 'van', 'stroller']
+
+# We're creating a pie chart using `plt.pie()`, where each slice 
+# represents a different vehicle type. It's like exploring a 
+# diverse range of transportation options, from bicycles to strollers.
 plt.pie(z, labels=veh_type)
 plt.show()
-### The object-oriented method
-address = '/workspaces/Python-for-Data-Science-and-Machine-Learning/mtcars.csv'
 
+### The object-oriented method
+
+# We're reading data from a CSV file containing information about cars.
+address = '/workspaces/Python-for-Data-Science-and-Machine-Learning/mtcars.csv'
 cars = pd.read_csv(address)
+
+# We're renaming the columns of the DataFrame to enhance readability 
+# and comprehension. It's like giving each car in our dataset a 
+# distinctive name for easier identification.
 cars.columns = ['car_names', 'mpg', 'cyl', 'disp', 'hp', 'dratr', 'wt', 'qsec', 'vs', 'am', 'gear', 'carb']
 
+# We're selecting the 'mpg' column from the DataFrame, representing 
+# the miles per gallon for each car. It's like focusing on a key 
+# aspect of each romantic partner's personality.
 mpg = cars.mpg
 
+# We're creating a new figure object for our plot.
 fig = plt.figure()
+
+# We're adding an axes object to the figure, specifying its position 
+# and dimensions. It's like setting up a canvas for our artistic 
+# expression.
 ax = fig.add_axes([.1,.1,1,1])
 
+# We're plotting the 'mpg' values on the axes. It's like sketching 
+# the outline of our romantic journey, highlighting the fuel efficiency 
+# of each car.
 mpg.plot()
 
+# We're setting the positions of the x-axis ticks and customizing their 
+# labels. It's like marking significant milestones in our journey and 
+# attaching meaningful memories to each one.
 ax.set_xticks(range(32))
-
 ax.set_xticklabels(cars['car_names'], rotation=60, fontsize='medium')
+
+# We're setting the title of the plot to describe its content. It's like 
+# giving our artwork a title that captures its essence and emotional impact.
 ax.set_title('Miles Per Gallon of Cars in mtcars')
 
+# We're adding labels to the x-axis and y-axis to provide context for the 
+# data being displayed. It's like adding captions to our artwork to guide 
+# the viewer's interpretation.
 ax.set_xlabel('car names')
 ax.set_ylabel('miles/gal')
+
 ## Adding a legend to your plot
 ### The functional method
+# We're creating another pie chart using `plt.pie()` without specifying 
+# data labels. It's like exploring different aspects of our romantic journey 
+# without attaching specific meanings to each slice.
 plt.pie(z)
 plt.legend(veh_type, loc='best')
 plt.show()
+
 ### The object-oriented method
+
+# We're creating another figure object for our plot.
 fig = plt.figure()
 ax = fig.add_axes([.1,.1,1,1])
 
+# We're plotting the 'mpg' values on the axes. It's like expressing 
+# the fuel efficiency of each car through visual representation.
 mpg.plot()
 
+# We're setting the positions of the x-axis ticks and customizing their 
+# labels. It's like marking significant milestones in our journey and 
+# attaching meaningful memories to each one.
 ax.set_xticks(range(32))
-
 ax.set_xticklabels(cars.car_names, rotation=60, fontsize='medium')
+
+# We're setting the title of the plot to describe its content. It's like 
+# giving our artwork a title that captures its essence and emotional impact.
 ax.set_title('Miles Per Gallon of Cars in mtcars')
 
+# We're adding labels to the x-axis and y-axis to provide context for the 
+# data being displayed. It's like adding captions to our artwork to guide 
+# the viewer's interpretation.
 ax.set_xlabel('car names')
 ax.set_ylabel('miles/gal')
+
+# We're adding a legend to the plot to provide additional information about 
+# the displayed data. It's like providing a key to help the viewer interpret 
+# the visual elements in our artwork.
 ax.legend(loc='best')
+
 ### Annotating your plot
+
+# We're finding the maximum 'mpg' value in the dataset. It's like identifying 
+# the peak of our romantic journey, the moment of maximum fuel efficiency.
 mpg.max()
+
+# We're creating another figure object for our plot.
 fig = plt.figure()
 ax = fig.add_axes([.1,.1,1,1])
 
+# We're plotting the 'mpg' values on the axes. It's like painting the canvas 
+# of our romantic journey with strokes of data points, visualizing the 
+# variability in fuel efficiency.
 mpg.plot()
 
+# We're setting the positions of the x-axis ticks and customizing their 
+# labels. It's like marking significant milestones in our journey and 
+# attaching meaningful memories to each one.
 ax.set_xticks(range(32))
-
 ax.set_xticklabels(cars['car_names'], rotation=50,fontsize='medium')
+
+# We're setting the title of the plot to describe its content. It's like 
+# giving our artwork a title that captures its essence and emotional impact.
 ax.set_title('Miles Per Gallon of Cars in mtcars')
 
+# We're adding labels to the x-axis and y-axis to provide context for the 
+# data being displayed. It's like adding captions to our artwork to guide 
+# the viewer's interpretation.
 ax.set_xlabel('car names')
 ax.set_ylabel('miles/gal')
 
+# We're setting the y-axis limits to focus on a specific range of values. 
+# It's like zooming in on a particular section of our journey to explore 
+# it in more detail.
 ax.set_ylim([0,45])
 
+# We're annotating a specific data point on the plot, highlighting its 
+# significance. It's like adding a note to our artwork, providing additional 
+# context for the viewer's understanding.
 ax.annotate('Toyota Corolla', xy=(19,33.9), xytext=(21,35), arrowprops=dict(facecolor='black', shrink=0.05))
 
+# We're adding a legend to the plot to provide additional information about 
+# the displayed data. It's like providing a key to help the viewer interpret 
+# the visual elements in our artwork.
 ax.legend(loc='best')
 
+# We're saving the plot as an image file for future reference or sharing. 
+# It's like preserving our artwork in a tangible form, allowing others to 
+# experience it even when they're not present.
 plt.savefig('carPlot.jpg')
-
 
 ```
 
 ### Visualizing Time Series
 ```python
+
+## Visualizing time series
+# Yo, we're kicking things off with the essential tools 
+# and modules. Just like gearing up before hitting 
+# Super Walmart!
+
+# Importing numpy for powerful numerical operations
+import numpy as np
+
+# Importing randn from numpy.random for generating random 
+# numbers (think of it as grabbing those surprise deals 
+# at Walmart!)
+from numpy.random import randn
+
+# Importing pandas for handling our data like a boss
+import pandas as pd
+
+# Importing Series and DataFrame from pandas for creating 
+# and manipulating our data structures (imagine these as 
+# our shopping carts for loading up on data goodies)
+from pandas import Series, DataFrame
+
+# Importing matplotlib.pyplot for creating awesome plots 
+# and visualizations
+import matplotlib.pyplot as plt
+
+# Importing rcParams from pylab to customize plot parameters 
+# (just like personalizing your shopping experience at Walmart)
+from pylab import rcParams
+
+# Importing seaborn for adding some extra style and 
+# attractiveness to our plots (like finding that stylish 
+# shirt at Walmart!)
+import seaborn as sns
+
+# Time to set the stage for our data visualizations, just 
+# like arranging the displays at Super Walmart to catch 
+# everyone's eye!
+
+# Ensuring our plots appear inline in the notebook, making 
+# it convenient for us to see the results right here.
+%matplotlib inline
+
+# Adjusting the figure size for our plots, just like 
+# arranging the shelves to showcase our products in 
+# Super Walmart.
+rcParams['figure.figsize'] = 5, 4
+
+# Setting the style for our plots, giving them a clean and 
+# stylish look like the aisles in Super Walmart.
+sns.set_style('whitegrid')
+
+### The simplest time series plot
+# Yo, we're about to load up our data, just like stocking 
+# the shelves at Super Walmart!
+
+# Defining the file path to our dataset, similar to 
+# pinpointing the location of merchandise in the store.
+address = '/workspaces/Python-for-Data-Science-and-Machine-Learning/Superstore-Sales.csv'
+
+# Reading the CSV file into a DataFrame, as if we're 
+# unpacking boxes of products at Super Walmart.
+# Here, we're setting the 'Order Date' column as the index, 
+# encoding the file using 'cp1252', and parsing dates to 
+# ensure proper date handling.
+store_df = pd.read_csv(address, index_col='Order Date', 
+                        encoding='cp1252', parse_dates=True)
+
+# Displaying the first few rows of our DataFrame, just 
+# like checking out the front displays at Super Walmart to 
+# see what's on offer.
+store_df.head()
+
+store_df['Order Quantity'].plot()
+# Time to create a smaller sample of our dataset, like 
+# selecting a few aisles to focus on at Super Walmart.
+
+# Randomly selecting 100 rows from our DataFrame, just 
+# like grabbing a mix of products from various sections 
+# of Super Walmart.
+store_df2 = store_df.sample(n=100, random_state=100, axis=0)
+
+# Labeling the x-axis of our plot, similar to indicating 
+# the time of day at Super Walmart.
+plt.xlabel('Order Date')
+
+# Labeling the y-axis of our plot, like specifying the 
+# quantity of products sold at Super Walmart.
+plt.ylabel('Order Quantity')
+
+# Setting the title for our plot, akin to naming a sales 
+# report at Super Walmart.
+plt.title('Super Walmart Sales')
+
+# Plotting the 'Order Quantity' column from our sample 
+# DataFrame, resembling displaying sales data for a 
+# particular product at Super Walmart.
+store_df2['Order Quantity'].plot()
+
+
 
 ```
 
