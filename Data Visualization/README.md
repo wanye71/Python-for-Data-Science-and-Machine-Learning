@@ -1019,6 +1019,217 @@ df2['Order Quantity'].plot()
 ### Creating Statistical Data Graphics in Seaborn
 ```python
 
+
+# Just like prepping for a day at the mechanic shop, let's 
+# set the stage by configuring our plot settings.
+
+# Set matplotlib to display plots inline in the Jupyter 
+# Notebook
+%matplotlib inline
+
+# Import rcParams from the pylab module to configure plot 
+# settings
+from pylab import rcParams  # Setting the stage with rcParams
+
+# Set the figure size for plots to create a visually 
+# appealing display area, akin to the workspace in a mechanic 
+# shop.
+rcParams['figure.figsize'] = 5, 6  # Creating a spacious workspace
+
+# Import seaborn library, which adds a touch of organization 
+# and clarity to our plot visuals, like the tool organization 
+# in a well-equipped mechanic shop.
+import seaborn as sns  # Adding organization to our displays
+
+# Set the style to 'whitegrid' for our plots, giving them a 
+# clean and professional look, similar to the environment of a 
+# high-quality mechanic shop.
+sns.set_style('whitegrid')  # Setting the workspace ambiance
+
+# Just like prepping for a visit to the mechanic shop, let's 
+# ensure our tools are ready by configuring our plot settings.
+
+# Set matplotlib to display plots inline in the Jupyter 
+# Notebook
+%matplotlib inline
+
+# Import rcParams from the pylab module to configure plot 
+# settings
+from pylab import rcParams  # Setting up our tools
+
+# Set the figure size for plots to create a visually 
+# appealing display area, similar to ensuring our workspace 
+# has enough room for maneuvering in the mechanic shop.
+rcParams['figure.figsize'] = 5, 6  # Preparing our workspace
+
+# Import seaborn library, which adds a touch of refinement 
+# to our plot visuals, like high-quality tools in a mechanic 
+# shop.
+import seaborn as sns  # Adding refinement to our tools
+
+# Set the style to 'whitegrid' for our plots, giving them a 
+# clean and organized appearance, reminiscent of the tidy 
+# layout in a mechanic shop.
+sns.set_style('whitegrid')  # Setting up our workspace ambiance
+
+### Eyeballing dataset distributions with histograms
+# In our mechanic shop, let's start by fetching the data on 
+# cars' fuel efficiency.
+
+# Define the file path to the dataset containing information 
+# on cars' fuel efficiency
+address = '/workspaces/Python-for-Data-Science-and-Machine-Learning/mtcars.csv'
+
+# Read the dataset into a DataFrame called 'cars'
+cars = pd.read_csv(address)  
+
+# Rename the columns in the DataFrame for better readability
+cars.columns = ['car_names', 'mpg', 'cyl', 'disp', 'hp', 'drat', 
+                'wt', 'qsec', 'vs', 'am', 'gear', 'carb']  
+
+# Set the car names as the index of the DataFrame, making it 
+# easier to access data about each car
+cars.index = cars['car_names']  
+
+# Extract the 'mpg' (miles per gallon) column from the 
+# DataFrame, representing the fuel efficiency of each car
+mpg = cars['mpg']  
+
+# Create a histogram plot to visualize the distribution of 
+# fuel efficiency among the cars in our mechanic shop
+mpg.plot(kind='hist')  
+
+
+# In our virtual mechanic shop, we're examining the dataset 
+# containing information about various cars, just like a 
+# mechanic inspects different vehicles.
+
+# First, let's load the dataset from the provided address, 
+# which is like bringing the cars into our shop for 
+# inspection.
+address = '/workspaces/Python-for-Data-Science-and-Machine-Learning/mtcars.csv'
+cars = pd.read_csv(address)
+
+# The dataset columns are renamed to reflect the car parts 
+# they represent, making it easier to identify each aspect 
+# of the cars we're inspecting.
+cars.columns = ['car_names','mpg','cyl','disp', 'hp', 'drat', 'wt', 'qsec', 'vs', 'am', 'gear', 'carb']
+
+# We set the car names as the index, providing a unique 
+# identifier for each car in our mechanic shop.
+cars.index = cars['car_names']
+
+# Extracting the miles per gallon (mpg) data, which 
+# represents the fuel efficiency of the cars, for further 
+# analysis, like using a fuel efficiency gauge to measure 
+# each car's performance.
+mpg = cars['mpg']
+
+# Now, we're ready to visualize the distribution of fuel 
+# efficiency among the cars using a histogram, which is like 
+# inspecting the fuel efficiency performance of each car in 
+# our mechanic shop using a diagnostic tool.
+plt.hist(mpg)
+
+# Finally, we display the histogram plot, allowing us to 
+# analyze and interpret the distribution of fuel efficiency 
+# across different cars in our mechanic shop.
+plt.plot()
+
+# In our virtual mechanic shop, let's visualize the distribution 
+# of fuel efficiency among the cars using Seaborn's displot 
+# function, like examining the fuel efficiency performance 
+# across different vehicles.
+
+# We're using Seaborn's displot function to create a 
+# visualization of the fuel efficiency distribution, which 
+# is like using a specialized diagnostic tool to analyze the 
+# fuel efficiency patterns of the cars in our mechanic shop.
+sns.displot(mpg)
+
+### Seeing scatterplots in action
+# Continuing our inspection in the mechanic shop, let's create 
+# a scatter plot to examine the relationship between horsepower 
+# (hp) and miles per gallon (mpg) for the cars.
+
+# We're using the plot function of the DataFrame `cars` to 
+# generate a scatter plot. This is akin to using a diagnostic 
+# tool to visually inspect the relationship between two 
+# variables: horsepower and miles per gallon.
+cars.plot(kind='scatter', x='hp', y='mpg', c=['darkgray'], s=150)
+
+# As we continue our examination in the mechanic shop, let's 
+# use a regression plot to explore the relationship between 
+# horsepower (hp) and miles per gallon (mpg) for the cars.
+
+# We're using the regplot function from the seaborn library to 
+# create a regression plot. This is like using a diagnostic 
+# tool that not only displays the scatter plot but also fits a 
+# regression line to the data, helping us visualize any 
+# potential linear relationship between the two variables.
+sns.regplot(x='hp', y='mpg', data=cars, scatter=True)
+
+### Generating a scatter plot matrix
+# Let's step into the mechanic shop and conduct a thorough 
+# inspection of our cars using a pairplot.
+
+# We're using the pairplot function from the seaborn library to 
+# create a grid of pairwise plots, showing the relationship 
+# between different variables in our dataset. This is like 
+# putting the cars on lifts and examining them from various 
+# angles to identify any patterns or correlations between 
+# different features.
+sns.pairplot(cars)
+
+# Let's focus our inspection on a subset of features that 
+# are crucial for our analysis.
+
+# We're selecting a subset of columns from our 'cars' DataFrame 
+# that includes the 'mpg', 'disp', 'hp', and 'wt' features. 
+# This is akin to choosing specific tools from a mechanic's 
+# toolbox to perform a targeted examination of certain aspects 
+# of the cars.
+cars_subset = cars[['mpg', 'disp', 'hp', 'wt']]
+
+# Now, let's create a pairplot using the selected subset of 
+# features. This pairplot will provide us with insights into 
+# the relationships between these specific variables, 
+# resembling a detailed inspection of particular car parts in 
+# the mechanic shop.
+sns.pairplot(cars_subset)
+
+# Finally, we'll display the pairplot to visualize the 
+# relationships between the selected features.
+plt.show()
+
+### Building boxplots
+# We'll adjust the figure size to ensure our boxplot displays 
+# are visually appealing and informative, just like arranging 
+# the workspace in a mechanic shop for a detailed analysis.
+
+# Setting the figure size to 5 inches (width) by 6 inches 
+# (height) to create a spacious and clear display area, 
+# resembling a well-organized mechanic's workspace.
+rcParams['figure.figsize'] = 5, 6
+
+# We'll create boxplots of the 'mpg' column, grouped by the 
+# 'am' (automatic or manual transmission) column. This 
+# analysis helps us understand the distribution of miles per 
+# gallon (mpg) for each transmission type, similar to 
+# examining different engine types for performance in a 
+# mechanic shop.
+cars.boxplot(column='mpg', by='am')
+
+# We'll create another boxplot, this time for the 'wt' 
+# (weight) column, also grouped by the 'am' column. This 
+# allows us to compare the weight distribution between cars 
+# with automatic and manual transmissions, similar to 
+# comparing the weight of different vehicle models in a 
+# mechanic shop.
+cars.boxplot(column='wt', by='am')
+
+
+
 ```
 
 
