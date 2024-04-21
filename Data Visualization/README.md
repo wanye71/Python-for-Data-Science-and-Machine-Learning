@@ -905,106 +905,114 @@ plt.savefig('carPlot.jpg')
 
 ### Visualizing Time Series
 ```python
+# Welcome to our Super Walmart adventure! Just like navigating through the 
+# various departments of this retail giant, we're diving into the world of 
+# Python and its libraries.
 
-## Visualizing time series
-# Yo, we're kicking things off with the essential tools 
-# and modules. Just like gearing up before hitting 
-# Super Walmart!
+# Time to load up our cart with essential tools! First, we head to the 
+# "Grocery" department to grab NumPy, the sturdy shopping cart that'll hold 
+# all our data arrays and mathematical functions.
+import numpy as np  
 
-# Importing numpy for powerful numerical operations
-import numpy as np
+# Next, we swing by the "Home Goods" department to pick up Pandas, our trusty 
+# shopping assistant. With Pandas, managing and analyzing our data becomes as 
+# easy as finding the perfect decor for our home!
+import pandas as pd  
 
-# Importing randn from numpy.random for generating random 
-# numbers (think of it as grabbing those surprise deals 
-# at Walmart!)
-from numpy.random import randn
+# We can't forget to visit the "Electronics" section to grab the Series and 
+# DataFrame classes from Pandas. They're like the versatile gadgets that make 
+# every shopping trip complete!
+from pandas import Series, DataFrame  
 
-# Importing pandas for handling our data like a boss
-import pandas as pd
+# Now, we head to the checkout with Matplotlib in tow. Matplotlib is like the 
+# checkout counter, where we can visualize our data and check out with stunning 
+# plots!
+import matplotlib.pyplot as plt  
 
-# Importing Series and DataFrame from pandas for creating 
-# and manipulating our data structures (imagine these as 
-# our shopping carts for loading up on data goodies)
-from pandas import Series, DataFrame
+# Let's not forget our shopping bags! We swing by the "Accessories" aisle to 
+# grab rcParams from pylab to customize our plots and carry our visualizations 
+# home in style.
+from pylab import rcParams  
 
-# Importing matplotlib.pyplot for creating awesome plots 
-# and visualizations
-import matplotlib.pyplot as plt
+# Last but not least, we stop by the "Fashion" department to pick up Seaborn 
+# from the shelves. Seaborn is like the fashion accessory that adds charm and 
+# elegance to our plots, making them stand out like premium products on display!
+import seaborn as sns  
 
-# Importing rcParams from pylab to customize plot parameters 
-# (just like personalizing your shopping experience at Walmart)
-from pylab import rcParams
 
-# Importing seaborn for adding some extra style and 
-# attractiveness to our plots (like finding that stylish 
-# shirt at Walmart!)
-import seaborn as sns
+# Now that we've gathered all our shopping essentials, it's time to hit the 
+# checkout and start our Super Walmart adventure!
 
-# Time to set the stage for our data visualizations, just 
-# like arranging the displays at Super Walmart to catch 
-# everyone's eye!
+# We're using `%matplotlib inline` to ensure that our Matplotlib plots are 
+# displayed directly within the Jupyter Notebook, creating a seamless shopping 
+# experience.
+%matplotlib inline  
 
-# Ensuring our plots appear inline in the notebook, making 
-# it convenient for us to see the results right here.
-%matplotlib inline
+# We're adjusting the size of our shopping cart using `rcParams['figure.figsize']`.
+# With a smaller size, it's easier to maneuver through the aisles and find the 
+# perfect products for our visualizations.
+rcParams['figure.figsize'] = 5, 4  
 
-# Adjusting the figure size for our plots, just like 
-# arranging the shelves to showcase our products in 
-# Super Walmart.
-rcParams['figure.figsize'] = 5, 4
+# As we start our journey, we're setting the style of our shopping experience 
+# using `sns.set_style()`. With the 'whitegrid' style, it's like strolling 
+# through the aisles with bright, clean pathways guiding our way.
+sns.set_style('whitegrid')  
 
-# Setting the style for our plots, giving them a clean and 
-# stylish look like the aisles in Super Walmart.
-sns.set_style('whitegrid')
 
-### The simplest time series plot
-# Yo, we're about to load up our data, just like stocking 
-# the shelves at Super Walmart!
 
-# Defining the file path to our dataset, similar to 
-# pinpointing the location of merchandise in the store.
+# It's time to explore the aisles of our Super Walmart and see what treasures 
+# we can uncover in the sales data aisle!
+
+# We're setting our shopping list with the address of the Superstore Sales 
+# dataset, making sure to navigate to the correct aisle.
 address = '/workspaces/Python-for-Data-Science-and-Machine-Learning/Superstore-Sales.csv'
 
-# Reading the CSV file into a DataFrame, as if we're 
-# unpacking boxes of products at Super Walmart.
-# Here, we're setting the 'Order Date' column as the index, 
-# encoding the file using 'cp1252', and parsing dates to 
-# ensure proper date handling.
-store_df = pd.read_csv(address, index_col='Order Date', 
-                        encoding='cp1252', parse_dates=True)
+# We're loading our shopping cart with the Superstore Sales dataset using 
+# `pd.read_csv()`. With the specified index column 'Order Date', it's like 
+# organizing our shopping items by the date of purchase, making it easier 
+# to track our purchases.
+df = pd.read_csv(address, index_col='Order Date', encoding='cp1252', parse_dates=True)
 
-# Displaying the first few rows of our DataFrame, just 
-# like checking out the front displays at Super Walmart to 
-# see what's on offer.
-store_df.head()
+# Let's take a quick peek at the first few items in our shopping cart to 
+# get an idea of what's available.
+df.head()
 
-store_df['Order Quantity'].plot()
-# Time to create a smaller sample of our dataset, like 
-# selecting a few aisles to focus on at Super Walmart.
 
-# Randomly selecting 100 rows from our DataFrame, just 
-# like grabbing a mix of products from various sections 
-# of Super Walmart.
-store_df2 = store_df.sample(n=100, random_state=100, axis=0)
 
-# Labeling the x-axis of our plot, similar to indicating 
-# the time of day at Super Walmart.
+# Now, let's take a stroll down the aisle of 'Order Quantity' and see how 
+# the purchases vary over time.
+
+# We're selecting the 'Order Quantity' department from our shopping cart 
+# and plotting the data. It's like exploring the shelves of this department 
+# to understand the quantity of items ordered over time.
+df['Order Quantity'].plot()
+
+
+
+# Now, let's explore a smaller sample from the 'Superstore Sales' dataset 
+# to get a closer look at the trends.
+
+# We're creating a smaller sample of 100 data points from the original 
+# dataset to analyze. It's like selecting a handful of items from the 
+# 'Superstore Sales' to examine more closely.
+df2 = df.sample(n=100, random_state=25, axis=0)
+
+# We're adding labels to the x-axis and y-axis to provide context for the 
+# data displayed. It's like labeling the aisles and shelves in the 
+# 'Superstore' to guide customers to the items they need.
 plt.xlabel('Order Date')
-
-# Labeling the y-axis of our plot, like specifying the 
-# quantity of products sold at Super Walmart.
 plt.ylabel('Order Quantity')
 
-# Setting the title for our plot, akin to naming a sales 
-# report at Super Walmart.
-plt.title('Super Walmart Sales')
+# We're setting the title of the plot to 'Superstore Sales' to give an 
+# overview of what the visualization represents. It's like putting up a 
+# signboard at the entrance of the 'Superstore' to inform customers about 
+# the current promotions or highlights.
+plt.title('Superstore Sales')
 
-# Plotting the 'Order Quantity' column from our sample 
-# DataFrame, resembling displaying sales data for a 
-# particular product at Super Walmart.
-store_df2['Order Quantity'].plot()
-
-
+# We're plotting the 'Order Quantity' from the smaller sample dataset. 
+# It's like examining the quantity of items purchased over time in a 
+# specific department of the 'Superstore'.
+df2['Order Quantity'].plot()
 
 ```
 
