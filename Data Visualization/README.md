@@ -666,6 +666,161 @@ plt.plot(x1,y1, marker='+', mew=15)
 
 ### Creating Labels and Annotations
 ```python
+# Ah, just like finding the perfect partner, we're embarking on a journey 
+# of exploration and discovery with Python and its libraries.
+
+# We're importing the NumPy library and aliasing it as 'np'. NumPy is like 
+# the reliable friend who always has your back, providing support for arrays, 
+# matrices, and mathematical functions.
+import numpy as np
+
+# We're importing the Pandas library and aliasing it as 'pd'. Pandas is like 
+# your loyal companion, helping you manage and analyze your data with ease.
+import pandas as pd
+
+# We're importing the Series and DataFrame classes from the Pandas library. 
+# These classes are like the dynamic duo, representing one-dimensional 
+# labeled arrays (Series) and two-dimensional labeled data structures 
+# (DataFrame), respectively.
+from pandas import Series, DataFrame
+
+# We're importing the pyplot module from the Matplotlib library and aliasing 
+# it as 'plt'. Matplotlib is like the artist, allowing us to create beautiful 
+# visualizations to showcase our data.
+import matplotlib.pyplot as plt
+
+# We're importing the rcParams module from the pylab library. rcParams is like 
+# the matchmaker, helping us customize the default settings for plotting to 
+# create stunning visual displays.
+from pylab import rcParams
+
+# We're importing the seaborn library and aliasing it as 'sns'. Seaborn is like 
+# the cupid of data visualization, adding a touch of charm and elegance to our 
+# plots with its high-level interface for drawing attractive statistical graphics.
+import seaborn as sns
+
+# Ah, preparing the stage for our romantic rendezvous with data visualization!
+
+# We're using `%matplotlib inline` to ensure that Matplotlib plots are displayed 
+# directly within the Jupyter Notebook, creating a seamless and immersive 
+# experience for our audience.
+%matplotlib inline
+
+# We're setting the figure size using `rcParams['figure.figsize']` to create a 
+# spacious and inviting atmosphere for our visualizations. Just like preparing 
+# a cozy setting for a romantic dinner, this ensures our plots have enough room 
+# to shine.
+rcParams['figure.figsize'] = 15, 4
+
+# We're setting the style of the plots using `sns.set_style()`. By choosing the 
+# 'darkgrid' style, we're adding a touch of mystery and allure to our visual 
+# storytelling. It's like setting the mood with dim lighting and a hint of 
+# suspense, keeping our audience captivated throughout the journey.
+sns.set_style('darkgrid')
+
+### Labeling plot features
+#### The functional method
+# Ah, the anticipation of revealing our data's story through 
+# the artistry of bar plots!
+
+# We're defining our x-values using the `range()` function, 
+# creating a sequence of numbers from 1 to 9. It's like 
+# selecting the perfect background music to set the mood for 
+# our romantic evening.
+x = range(1, 10)
+
+# We're defining our y-values, representing the heights of 
+# the bars in our bar plot. Each value corresponds to a 
+# romantic gesture, ranging from heartfelt declarations to 
+# subtle whispers of affection.
+y = [1, 2, 3, 4, 0.5, 4, 3, 2, 1]
+
+# We're creating a bar plot using `plt.bar()`, where each 
+# bar represents a unique aspect of our data. It's like 
+# arranging a bouquet of flowers, with each bloom 
+# symbolizing a different emotion in our romantic journey.
+plt.bar(x, y)
+
+# We're adding a label to the x-axis using `plt.xlabel()`, 
+# providing context for the values displayed along the 
+# horizontal axis. It's like adding a caption to a cherished 
+# photograph, helping us remember the special moments 
+# captured in our data.
+plt.xlabel('The x-axis label')
+
+# We're adding a label to the y-axis using `plt.ylabel()`, 
+# conveying the meaning behind the values represented along 
+# the vertical axis. It's like expressing the depth of our 
+# feelings, ensuring our audience understands the significance 
+# of each data point in our romantic narrative.
+plt.ylabel('The y-axis label')
+
+z = [1,2,3,4,0.5]
+veh_type = ['bicycle', 'motorbike', 'car', 'van', 'stroller']
+plt.pie(z, labels=veh_type)
+plt.show()
+### The object-oriented method
+address = '/workspaces/Python-for-Data-Science-and-Machine-Learning/mtcars.csv'
+
+cars = pd.read_csv(address)
+cars.columns = ['car_names', 'mpg', 'cyl', 'disp', 'hp', 'dratr', 'wt', 'qsec', 'vs', 'am', 'gear', 'carb']
+
+mpg = cars.mpg
+
+fig = plt.figure()
+ax = fig.add_axes([.1,.1,1,1])
+
+mpg.plot()
+
+ax.set_xticks(range(32))
+
+ax.set_xticklabels(cars['car_names'], rotation=60, fontsize='medium')
+ax.set_title('Miles Per Gallon of Cars in mtcars')
+
+ax.set_xlabel('car names')
+ax.set_ylabel('miles/gal')
+## Adding a legend to your plot
+### The functional method
+plt.pie(z)
+plt.legend(veh_type, loc='best')
+plt.show()
+### The object-oriented method
+fig = plt.figure()
+ax = fig.add_axes([.1,.1,1,1])
+
+mpg.plot()
+
+ax.set_xticks(range(32))
+
+ax.set_xticklabels(cars.car_names, rotation=60, fontsize='medium')
+ax.set_title('Miles Per Gallon of Cars in mtcars')
+
+ax.set_xlabel('car names')
+ax.set_ylabel('miles/gal')
+ax.legend(loc='best')
+### Annotating your plot
+mpg.max()
+fig = plt.figure()
+ax = fig.add_axes([.1,.1,1,1])
+
+mpg.plot()
+
+ax.set_xticks(range(32))
+
+ax.set_xticklabels(cars['car_names'], rotation=50,fontsize='medium')
+ax.set_title('Miles Per Gallon of Cars in mtcars')
+
+ax.set_xlabel('car names')
+ax.set_ylabel('miles/gal')
+
+ax.set_ylim([0,45])
+
+ax.annotate('Toyota Corolla', xy=(19,33.9), xytext=(21,35), arrowprops=dict(facecolor='black', shrink=0.05))
+
+ax.legend(loc='best')
+
+plt.savefig('carPlot.jpg')
+
 
 ```
 
