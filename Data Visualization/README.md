@@ -1019,58 +1019,65 @@ df2['Order Quantity'].plot()
 ### Creating Statistical Data Graphics in Seaborn
 ```python
 
+# Just like assembling a toolkit in a mechanic shop, we're 
+# importing the necessary tools (libraries) for our data 
+# analysis.
 
-# Just like prepping for a day at the mechanic shop, let's 
-# set the stage by configuring our plot settings.
+# Importing NumPy library to provide support for numerical 
+# computations, akin to including various tools for 
+# measurement and calculation in a mechanic's toolkit.
+import numpy as np  # Including NumPy for numerical computing
 
-# Set matplotlib to display plots inline in the Jupyter 
-# Notebook
-%matplotlib inline
+# Importing Pandas library to handle and manipulate our data 
+# effectively, similar to using a versatile set of tools for 
+# data organization and analysis in a mechanic shop.
+import pandas as pd  # Bringing in Pandas for data management
 
-# Import rcParams from the pylab module to configure plot 
-# settings
-from pylab import rcParams  # Setting the stage with rcParams
+# Importing specific classes from the Pandas library, such as 
+# Series and DataFrame, which represent different types of 
+# data structures, resembling specialized tools in a mechanic 
+# shop for specific tasks.
+from pandas import Series, DataFrame  # Importing specific Pandas classes
 
-# Set the figure size for plots to create a visually 
-# appealing display area, akin to the workspace in a mechanic 
-# shop.
-rcParams['figure.figsize'] = 5, 6  # Creating a spacious workspace
+# Importing scatter_matrix function from pandas.plotting module 
+# to create a matrix of scatter plots, similar to using a 
+# specialized tool to analyze relationships between variables 
+# in a mechanic shop.
+from pandas.plotting import scatter_matrix  # Importing scatter matrix function
 
-# Import seaborn library, which adds a touch of organization 
-# and clarity to our plot visuals, like the tool organization 
-# in a well-equipped mechanic shop.
-import seaborn as sns  # Adding organization to our displays
+# Importing Matplotlib's pyplot module to create plots and 
+# visualizations, resembling a set of versatile tools for 
+# graphical representation in a mechanic's toolkit.
+import matplotlib.pyplot as plt  # Including Matplotlib for plotting
 
-# Set the style to 'whitegrid' for our plots, giving them a 
-# clean and professional look, similar to the environment of a 
-# high-quality mechanic shop.
-sns.set_style('whitegrid')  # Setting the workspace ambiance
+# Importing rcParams from the pylab module to customize plot 
+# settings, akin to adjusting tools 
 
-# Just like prepping for a visit to the mechanic shop, let's 
-# ensure our tools are ready by configuring our plot settings.
+# Just like preparing the workspace in a mechanic shop, let's 
+# configure our plot settings for an efficient analysis 
+# environment.
 
-# Set matplotlib to display plots inline in the Jupyter 
-# Notebook
-%matplotlib inline
+# Ensuring Matplotlib plots are displayed inline within the 
+# Jupyter Notebook, resembling a workspace where observations 
+# are immediately visible after an action in a mechanic shop.
 
-# Import rcParams from the pylab module to configure plot 
-# settings
-from pylab import rcParams  # Setting up our tools
+# Displaying plots inline
+%matplotlib inline  
 
-# Set the figure size for plots to create a visually 
-# appealing display area, similar to ensuring our workspace 
-# has enough room for maneuvering in the mechanic shop.
-rcParams['figure.figsize'] = 5, 6  # Preparing our workspace
+# Importing rcParams from the pylab module to customize plot 
+# settings, similar to adjusting workspace dimensions and 
+# lighting in a mechanic shop.
+from pylab import rcParams  # Importing rcParams for plot customization
 
-# Import seaborn library, which adds a touch of refinement 
-# to our plot visuals, like high-quality tools in a mechanic 
-# shop.
-import seaborn as sns  # Adding refinement to our tools
+# Setting the default figure size for plots to create an 
+# optimal workspace, akin to adjusting the size of the workbench 
+# in a mechanic shop to accommodate different tasks.
+rcParams['figure.figsize'] = 5, 6  # Setting plot size
 
-# Set the style to 'whitegrid' for our plots, giving them a 
-# clean and organized appearance, reminiscent of the tidy 
-# layout in a mechanic shop.
-sns.set_style('whitegrid')  # Setting up our workspace ambiance
+# Setting the style of Seaborn plots to 'whitegrid' to create 
+# a clean and organized workspace ambiance, resembling a 
+# well-maintained workspace environment in a mechanic shop.
+sns.set_style('whitegrid')  # Setting plot style to whitegrid
 
 ### Eyeballing dataset distributions with histograms
 # In our mechanic shop, let's start by fetching the data on 
@@ -1227,6 +1234,17 @@ cars.boxplot(column='mpg', by='am')
 # comparing the weight of different vehicle models in a 
 # mechanic shop.
 cars.boxplot(column='wt', by='am')
+
+# Visualizing the distribution of a quantitative variable 
+# (mpg) across different categories of a categorical variable 
+# (am) using a box plot.
+
+# Displaying a box plot to showcase the distribution of miles 
+# per gallon (mpg) for different categories of transmission 
+# types (am), providing insights into the performance 
+# differences between automatic and manual cars.
+sns.boxplot(x='am', y='mpg', data=cars, hue='am', 
+            palette='hls')  # Creating a box plot
 
 
 
