@@ -295,11 +295,11 @@ h_active.value_counts()
 # This function whispers of eruptions past,
 # Sketching the landscape of our fiery blast.
 volcanos.describe()
-
 ```
 
 ### Summarizing categorical data
 ```python
+
 
 ```
 
