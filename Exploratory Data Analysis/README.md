@@ -428,7 +428,256 @@ pd.crosstab(storms['year'], storms['month'])
 
 ### Pearson correlation analysis
 ```python
+# Starting with parametric methods in pandas and scipy
 
+# Pandas is imported as 'pd', the go-to tool for data handling,
+# NumPy joins in too, arrays and matrices commanding.
+
+# Matplotlib and Seaborn, charting pals in the mix,
+# Plotting stories, revealing trends, with visual tricks.
+
+# RCParams, a behind-the-scenes wizard's spell,
+# Crafting plot sizes, an art, I can tell.
+
+# Lastly, Scipy arrives, with stats on its mind,
+# Pearson correlation, a measure, it's designed.
+import pandas as pd  # The data powerhouse, pandas
+import numpy as np   # NumPy, arrays and matrices grand
+
+import matplotlib.pyplot as plt  # Matplotlib's plotting thrill
+import seaborn as sns             # Seaborn, charting skill
+from pylab import rcParams        # RCParams, the plot size's command
+
+import scipy                        # Scipy for stats and more
+from scipy.stats import pearsonr   # Pearson correlation, to explore
+
+
+# In the realm of visualization, where insights align, `%matplotlib
+# inline` ensures plots are inline, just fine. With this magic command,
+# plots appear in line, making visualization a breeze, a technique so
+# divine.
+%matplotlib inline
+
+#***********************************************************#
+
+# rcParams sets the dimensions, a canvas to define, `figure.figsize`
+# determines width and height, a size so prime. With dimensions
+# adjusted, plots come alive, in size and proportion, they strive.
+# rcParams['figure.figsize'] = 12, 5
+
+#***********************************************************#
+
+# With the style of the plot, a canvas so neat, `whitegrid` is set,
+# making plots complete. A backdrop of white, with gridlines so light,
+# seaborn sets the stage, for data's insight.
+sns.set_style("whitegrid")
+
+
+#         ### Obese = BMI greater than or equal to 30
+#         ### Overweight = BMI greater than or equal to 25 but less than 30
+
+
+# In the world of data, where insights unfold, a file is sought, its
+# tales untold. 'address' is the path, where data resides, to be
+# explored and analyzed, where knowledge abides.
+address = '../obesity_data.csv'
+
+#***********************************************************#
+
+# From the depths of files, 'obese_data' arises, a DataFrame formed, its
+# structure comprises. With 'read_csv', it ingests the data, a table
+# it forms, where numbers await, amidst digital storms.
+obese = pd.read_csv(address)
+
+#***********************************************************#
+
+# A transformation unfolds, columns evolve, 'obese' adapts, its
+# structure resolves. 'Age', 'Gender', and 'Height', familiar faces
+# remain, joined by 'Weight', 'BMI', and 'PhysicalActivityLevel', a
+# comprehensive domain. Yet another addition, 'ObesityCategory', it
+# joins the fold, completing the ensemble, a story yet untold.
+
+# The 'columns' attribute of the 'obese' DataFrame is assigned a new list
+# containing the column names 'Age', 'Gender', 'Height', 'Weight', 'BMI',
+# 'PhysicalActivityLevel', and 'ObesityCategory', thereby renaming the
+# columns accordingly.
+obese.columns = ['Age', 'Gender', 'Height', 'Weight', 'BMI', 'PhysicalActivityLevel', 'ObesityCategory']
+
+
+#***********************************************************#
+# # A glimpse we take, a peek so fine, 'obese_cols' reveals, its first
+# # ten in line. The head is shown, a preview complete, of data
+# # transformed, now neat and discreet.
+# obese.head(10)
+obese.head(5)
+
+# obese.dtypes
+
+# In the realm of visualization, where patterns arise, 'sns.pairplot'
+# takes its guise. With 'obese' in hand, it creates a plot, pairs
+# abound, revealing relationships sought.
+
+# 'sns.pairplot' generates a grid of pairwise plots for the numerical
+# columns of the 'obese' DataFrame, offering a glimpse into the data's
+# distribution and correlations.
+sns.pairplot(obese)
+
+
+# In the realm of selection, where variables align, 'x' is crafted,
+# where choices entwine. From 'obese', it plucks, 'BMI', 'Weight', and
+# 'Gender', a trio so fine.
+
+# 'x' is created as a DataFrame containing the selected columns 'BMI',
+# 'Weight', and 'Gender' from the 'obese' DataFrame, forming a subset
+# tailored for analysis.
+x = obese[['BMI', 'Weight', 'Gender']]
+
+#***********************************************************#
+
+# In the realm of visualization, where insights unfold, 'sns.pairplot'
+# takes its toll. With 'x' in hand, it paints a plot, pairs galore,
+# revealing relationships, and more.
+
+# 'sns.pairplot' generates a grid of pairwise plots for the selected
+# variables 'BMI', 'Weight', and 'Gender' from the 'x' DataFrame,
+# providing a visual exploration of their relationships.
+sns.pairplot(x, vars=['BMI', 'Weight', 'Gender'])
+
+
+
+### Using scipy to calculate the Pearson correlation coefficient
+
+# From the depths of 'obese', 'Weight' emerges, a series so bold, its
+# values urge. An array of weights, where pounds abide, a variable
+# measured, with physicality tied.
+weight = obese['Weight']
+
+#***********************************************************#
+
+# Another contender, 'PhysicalActivityLevel' strides, a measure of
+# movement, where activity resides. From 'obese' it comes, a column so
+# keen, activity levels gauged, in every scene.
+activity = obese['PhysicalActivityLevel']
+
+#***********************************************************#
+
+# A third player enters, 'BMI' is here, a metric of health, drawing
+# near. From 'obese' it's drawn, a calculation so fine, a ratio of
+# weight and height, in every line.
+bmi = obese['BMI']
+
+#***********************************************************#
+
+# The stage is set, the players aligned, 'pearsonr' takes flight, its
+# purpose defined. With 'weight' and 'activity', it seeks a bond, a
+# correlation revealed, a truth so fond.
+
+# The Pearson correlation coefficient and p-value are computed for the
+# 'weight' and 'activity' variables using the 'pearsonr' function.
+pearsonr_coefficient, p_value = pearsonr(weight, activity)
+
+#***********************************************************#
+
+# The result is revealed, the coefficient displayed, a measure of
+# correlation, where insight's conveyed.
+print('Pearson Correlation Coefficient %0.3f' % (pearsonr_coefficient))
+
+
+# From the depths of 'obese', 'Weight' emerges, a series so bold, its
+# values urge. An array of weights, where pounds abide, a variable
+# measured, with physicality tied.
+weight = obese['Weight']
+
+#***********************************************************#
+
+# A third player enters, 'BMI' is here, a metric of health, drawing
+# near. From 'obese' it's drawn, a calculation so fine, a ratio of
+# weight and height, in every line.
+bmi = obese['BMI']
+
+#***********************************************************#
+
+# The stage is set, the players aligned, 'pearsonr' takes flight, its
+# purpose defined. With 'weight' and 'bmi', it seeks a bond, a
+# correlation revealed, a truth so fond.
+
+# The Pearson correlation coefficient and p-value are computed for the
+# 'weight' and 'bmi' variables using the 'pearsonr' function.
+pearsonr_coefficient, p_value = pearsonr(weight, bmi)
+
+#***********************************************************#
+
+# The result is revealed, the coefficient displayed, a measure of
+# correlation, where insight's conveyed.
+print('Pearson Correlation Coefficient %0.3f' % (pearsonr_coefficient))
+
+
+# A third player enters, 'BMI' is here, a metric of health, drawing
+# near. From 'obese' it's drawn, a calculation so fine, a ratio of
+# weight and height, in every line.
+bmi = obese['BMI']
+
+#***********************************************************#
+
+# Another contender, 'PhysicalActivityLevel' strides, a measure of
+# movement, where activity resides. From 'obese' it comes, a column so
+# keen, activity levels gauged, in every scene.
+activity = obese['PhysicalActivityLevel']
+
+#***********************************************************#
+
+# The stage is set, the players aligned, 'pearsonr' takes flight, its
+# purpose defined. With 'bmi' and 'activity', it seeks a bond, a
+# correlation revealed, a truth so fond.
+
+# The Pearson correlation coefficient and p-value are computed for the
+# 'bmi' and 'activity' variables using the 'pearsonr' function.
+pearsonr_coefficient, p_value = pearsonr(bmi, activity)
+
+#***********************************************************#
+
+# The result is revealed, the coefficient displayed, a measure of
+# correlation, where insight's conveyed.
+print('Pearson Correlation Coefficient %0.3f' % (pearsonr_coefficient))
+
+
+# In the realm of selection, where variables align, 'x' is crafted,
+# where choices entwine. From 'obese', it plucks, 'BMI', 'Weight', and
+# 'Height', a trio so fine.
+
+# 'x' is created as a DataFrame containing the selected columns 'BMI',
+# 'Weight', and 'Height' from the 'obese' DataFrame, forming a subset
+# tailored for analysis.
+x = obese[['BMI', 'Weight', 'Height']]
+
+#***********************************************************#
+
+# The stage is set, the trio in hand, 'corr' is calculated, a matrix so
+# grand. Correlations abound, between each pair, revealing relationships,
+# beyond compare.
+
+# The correlation matrix is computed for the columns of the 'x' DataFrame,
+# providing insights into the relationships between 'BMI', 'Weight', and
+# 'Height'.
+corr = x.corr()
+
+#***********************************************************#
+
+# The result is revealed, a matrix displayed, where correlations reside,
+# relationships unveiled.
+corr
+
+
+### Using Seaborn to visualize the Pearson correlation coefficient
+
+# In the realm of visualization, where insights take flight, 'sns.heatmap'
+# casts its light. With 'corr' in hand, a matrix of correlation, it
+# paints a picture, a visualization sensation.
+
+# 'sns.heatmap' generates a heatmap visualization of the correlation matrix
+# 'corr', with column names used as tick labels on both the x-axis and
+# y-axis to denote the variables being compared.
+sns.heatmap(corr, xticklabels=corr.columns.values, yticklabels=corr.columns.values)
 ```
 
 ### Spearman rank correlation and Chi-square
