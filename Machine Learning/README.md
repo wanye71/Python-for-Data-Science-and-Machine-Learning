@@ -339,5 +339,222 @@ plt.plot(standard_scalar)
 
 ### Applied machine learning
 ```python
+# Applied machine learning: Starter problem
+
+# In the garden of data, where insights bloom bright,
+# Pandas tends the fields, with its data might.
+# DataFrame 'pd' emerges, with data so fine,
+# Ready to explore, each row, each line.
+
+import pandas as pd
+
+#**************************************************#
+# Amidst the garden's blooms, where divisions take flight,
+# train_test_split comes forth, its wisdom to invite.
+# Splitting the garden's treasures, between train and test,
+# A step towards learning, with results the best.
+
+from sklearn.model_selection import train_test_split
+
+#**************************************************#
+# In the realm of flowers, where decisions are set,
+# DecisionTreeClassifier takes the bet.
+# Predictions it makes, with nodes so bright,
+# A model to guide, through data's flight.
+
+from sklearn.tree import DecisionTreeClassifier
+
+#**************************************************#
+# In the realm of evaluation, where metrics shine,
+# Metrics from sklearn, with numbers so fine.
+# Accuracy, precision, recall, and more,
+# Evaluation of models, to reveal the score.
+
+from sklearn import metrics
+
+
+# In the garden of data, where insights bloom bright,
+# Pandas tends the fields, with its data might.
+# DataFrame 'pd' emerges, with data so fine,
+# Ready to explore, each row, each line.
+
+import pandas as pd
+
+#**************************************************#
+# Amidst the garden's blooms, where treasures take flight,
+# Iris data is fetched, a dataset so right.
+# From CSV it arises, with columns so clear,
+# Ready for analysis, without any fear.
+
+#**************************************************#
+# Define the relative file path to the Iris dataset CSV file.
+# The '..' indicates the parent directory of the current working directory.
+# 'iris.csv' is the filename of the dataset.
+address = '../iris.csv'
+
+#**************************************************#
+# Use the pandas library's read_csv function to load the Iris dataset from the CSV file.
+# The result is stored in a DataFrame object, which is a 2-dimensional labeled data structure.
+# DataFrames are similar to SQL tables or Excel spreadsheets.
+import pandas as pd
+iris_data = pd.read_csv(address)
+
+#**************************************************#
+# Display the first five rows of the DataFrame using the head() method.
+# This is useful for quickly testing if your object has the right type of data in it.
+# By default, head() displays the first five rows of the DataFrame.
+iris_data.head()
+
+
+# In the garden of data, where insights bloom bright,
+# Pandas tends the fields, with its data might.
+# DataFrame 'pd' emerges, with data so fine,
+# Ready to explore, each row, each line.
+
+# Use the unique() method on the 'Species' column of the iris_data DataFrame.
+# This method identifies all unique values in the column, which in the case of the Iris dataset,
+# will typically be the different species of Iris flowers.
+# The result is an array of unique species names, providing a quick way to see all the distinct species present in the dataset.
+iris_data.Species.unique()
+
+
+## Separating features and lables
+
+# In the data's garden, where features take flight,
+# A slice of the DataFrame, to bring insight.
+# Column selection, precise and keen,
+# x holds the features, the data's scene.
+
+# The 'iloc' method is used for position-based indexing in pandas
+# DataFrames. Here, it's selecting all rows (indicated by ':') and the
+# columns from index 1 to 4 (indicated by '1:5'). The end index in a
+# range is exclusive, so '1:5' selects columns at index 1, 2, 3, and
+# 4. This will typically correspond to the 'SepalWidth', 'PetalLength',
+# 'PetalWidth', and another column if present. The result is assigned
+# to the variable 'x', creating a new DataFrame with just the selected
+# columns.
+
+x = iris_data.iloc[:, 1:5]
+
+#**************************************************#
+# Display the contents of the variable 'x'. Since 'x' is a DataFrame,
+# the output will be formatted as a table where each row represents an
+# observation and each column represents a feature of the Iris dataset.
+# This is useful for verifying the data contained in 'x' and ensuring
+# that the DataFrame has been correctly created.
+x
+
+
+
+# In the garden of data, where blooms inspire, iris_data awaits, with
+# its data attire. Rows and columns, a garden so vast, where insights
+# flourish, the die is cast.
+
+# Use the 'iloc' method to select all rows and the column at index 5.
+# This typically corresponds to the 'Species' column in the Iris
+# dataset, which contains the target variable (the species of the Iris
+# flower). The result is assigned to the variable 'y', creating a
+# Series containing the target values.
+
+y = iris_data.iloc[:, 5]
+
+#**************************************************#
+# Display the contents of the variable 'y'. Since 'y' is a Series,
+# the output will be formatted as a single column where each row
+# represents the species of an Iris flower in the dataset. This is
+# useful for verifying the data contained in 'y' and ensuring that the
+# Series has been correctly created.
+y
+
+
+## Train Test Split
+
+# Split the dataset into training and testing sets using the
+# train_test_split function from scikit-learn.
+# The 'x' DataFrame contains the features, and the 'y' Series
+# contains the target variable.
+
+# The test_size parameter specifies the proportion of the dataset to
+# include in the test split. Here, it's set to 0.3, indicating that
+# 30% of the data will be used for testing.
+
+# The random_state parameter controls the shuffling of the dataset
+# before splitting. Setting it to 0 ensures reproducibility of the
+# results.
+
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.3, random_state=0)
+
+
+## Training Decision Tree Classifier
+
+# A classifier from Decision Tree we spawn,
+# To predict the flower, whose beauty is drawn.
+# The DecisionTreeClassifier is born,
+# To classify Iris, from dusk until morn.
+
+# Create a DecisionTreeClassifier instance named 'clf'.
+# Decision trees are a type of supervised learning algorithm used for
+# classification tasks. The classifier will learn to predict the
+# species of Iris flowers based on the features provided in the
+# training data.
+
+clf = DecisionTreeClassifier()
+
+#**************************************************#
+# Train the decision tree classifier using the training data.
+# The fit method fits the model to the training data, learning the
+# patterns and relationships between the features and the target
+# variable. The 'x_train' parameter contains the features of the
+# training set, while 'y_train' contains the corresponding target
+# values (species labels).
+
+clf.fit(x_train, y_train)
+
+
+# With the classifier trained, predictions we seek,
+# To evaluate its performance, strong and unique.
+# Using the test set, unseen before,
+# We predict the labels, like a wise troubadour.
+
+# Predict the labels for the test data using the trained classifier.
+# The predict method applies the trained model to the features in the
+# test set ('x_test') and returns the predicted labels ('y_predict').
+# These predictions will be compared with the actual labels to assess
+# the model's performance.
+
+y_predict = clf.predict(x_test)
+
+#**************************************************#
+# Display the predicted labels.
+# The predicted labels are stored in the variable 'y_predict', and
+# this command prints them to the console. It allows us to examine
+# the model's predictions and compare them with the actual labels
+# to evaluate the classifier's accuracy.
+
+y_predict
+
+
+## Evaluation Metric
+
+# Accuracy, a measure we seek to find,
+# To judge the classifier's performance, refined.
+# By comparing predicted labels with those true,
+# The accuracy score reveals how well it grew.
+
+# Compute the accuracy score of the classifier.
+# The accuracy_score function from the sklearn.metrics module is used
+# to compare the predicted labels ('y_predict') with the true labels
+# from the test set ('y_test'). It returns a value representing the
+# accuracy of the classifier's predictions.
+
+accuracy = metrics.accuracy_score(y_test, y_predict)
+
+# Print the accuracy score to the console.
+# The accuracy score, calculated earlier, is printed to the console
+# to provide insight into the classifier's performance. It indicates
+# the proportion of correctly predicted labels out of all labels
+# in the test set.
+
+print("Accuracy:", accuracy)
 
 ```
