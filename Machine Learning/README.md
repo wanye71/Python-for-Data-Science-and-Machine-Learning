@@ -199,7 +199,142 @@ onehot_encoded_df
 
 ### Transforming dataset distribution
 ```python
+# Transforming Dataset Distributions
 
+
+# In the landscape of data, where insights take flight,
+# Pandas tends the fields, with its data might.
+# A toolbox of data structures and functions, it brings,
+# For data manipulation and analysis, it sings.
+
+
+# Importing pandas for data manipulation and analysis.
+import pandas as pd
+
+#**************************************************#
+# Amidst the arrays' realm, where numbers align,
+# NumPy stands tall, with its numerical shine.
+# Arrays and matrices, its domain so vast,
+# For numerical computations, unsurpassed.
+
+# Importing NumPy for numerical computations with arrays.
+import numpy as np
+
+#**************************************************#
+# On the canvas of visualization, where stories ignite,
+# Matplotlib paints the picture, colors so right.
+# A canvas for plots, clear and bright,
+# Data speaks volumes, without any fright.
+
+# Importing Matplotlib for visualization of data.
+import matplotlib.pyplot as plt
+
+#**************************************************#
+# In the realm of transformation, where scales align,
+# MinMaxScaler and scale, their powers combine.
+# With features rescaled, a new horizon to define,
+# Normalization and standardization, in data's design.
+
+# Importing MinMaxScaler and scale for feature scaling.
+from sklearn.preprocessing import MinMaxScaler, scale
+
+
+# In the world of data, where cars roam free,
+# DataFrame 'cars_data' emerges, you see.
+# From a CSV file, its tales unfurl,
+# A tableau of vehicles, ready to swirl.
+
+# The file path to the CSV containing used cars data.
+address = '../used_cars.csv'
+
+#**************************************************#
+# In the realm of data, where files converge,
+# DataFrame 'cars_data' is forged, with a surge.
+# From the CSV file, its journey begins,
+# Loaded into memory, where the story spins.
+
+# Read the CSV file into a DataFrame 'cars_data',
+# unleashing the tales of used cars onto the screen.
+cars_data = pd.read_csv(address)
+
+#**************************************************#
+# Display the first few rows of DataFrame 'cars_data',
+# A glimpse into the world of used cars, ready to invade.
+cars_data.head()
+
+
+# In the canvas of visualization, where data paints a tale,
+# Matplotlib takes the lead, without fail.
+# A line plot emerges, with mileage in sight,
+# The journey of each car, in the day and the night.
+
+# Create a line plot of 'Mileage' from DataFrame 'cars_data',
+# depicting the mileage of each car over time.
+plt.plot(cars_data['Mileage'])
+
+
+## Normalization
+
+# In the realm of scaling, where features align,
+# MinMaxScaler emerges, its powers combine.
+# With data transformed, within a range so right,
+# Features rescaled, in data's light.
+
+# Create an instance of MinMaxScaler to scale the 'Mileage' feature,
+# ensuring that data falls within a specified range.
+minmax_scaler = MinMaxScaler()
+
+#**************************************************#
+# In the realm of transformation, where scales take flight,
+# MinMaxScaler fits the data, with its might.
+# Ensuring the 'Mileage' feature, rescaled in its span,
+# A range defined, for each car's journey to stand.
+
+# Fit the MinMaxScaler to the 'Mileage' feature in DataFrame 'cars_data',
+# determining the scaling factors to transform the data.
+minmax_scaler.fit(cars_data[['Mileage']])
+
+
+# In the realm of transformation, where scales take flight,
+# Features are rescaled, within a range so right.
+# MinMaxScaler applies its magic, with precision so fine,
+# Transforming the 'Mileage' feature, in data's design.
+
+# Transform the 'Mileage' feature in DataFrame 'cars_data'
+# using the fitted MinMaxScaler, ensuring data falls within the specified range.
+scaled_data = minmax_scaler.transform(cars_data[['Mileage']])
+
+
+# In the canvas of visualization, where data takes flight,
+# Matplotlib paints the picture, with colors so right.
+# A line plot emerges, with scaled data in sight,
+# The journey of each car, in a normalized light.
+
+# Create a line plot of the scaled 'Mileage' data,
+# depicting the transformed mileage of each car over time.
+plt.plot(scaled_data)
+
+
+## Standardization
+
+# In the realm of transformation, where scales align,
+# StandardScaler emerges, its powers combine.
+# With features standardized, a new horizon to define,
+# Normalization achieved, in data's design.
+
+# Standardize the 'Mileage' feature in DataFrame 'cars_data'
+# using the scale function, ensuring mean of 0 and standard deviation of 1.
+standard_scalar = scale(cars_data[['Mileage']])
+
+#**************************************************#
+# In the canvas of visualization, where data takes flight,
+# Matplotlib paints the picture, colors so right.
+# A line plot emerges, with standardized data in sight,
+# The journey of each car, in a standardized light.
+
+# Create a line plot of the standardized 'Mileage' data,
+# depicting the standardized mileage of each car over time.
+plt.plot(standard_scalar)
 ```
 
 ### Applied machine learning
